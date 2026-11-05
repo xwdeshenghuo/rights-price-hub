@@ -138,6 +138,19 @@ section{margin-bottom:28px;scroll-margin-top:130px}
 .empty{display:none;background:#fff;border:1px dashed var(--line);border-radius:var(--radius);
   padding:26px;text-align:center;color:var(--mut);font-size:14px;margin-bottom:28px}
 
+
+/* 排序与实查标 */
+.sortsel{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink2)}
+.sortsel select{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 10px;font-size:13px;color:var(--ink);outline:0}
+.checked{font-size:11px;color:var(--mut)}
+/* 收录标准区 */
+.std{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+.std-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 22px;margin-top:10px}
+@media(max-width:640px){.std-grid{grid-template-columns:1fr}}
+.std h3{margin:0 0 5px;font-size:14px}
+.std p,.std li{font-size:12.5px;color:var(--ink2);line-height:1.75;margin:0}
+.std ul{margin:0;padding-left:17px}
+
 /* ---------- 页脚 ---------- */
 footer{background:#0a1930;color:#aebdd2;margin-top:14px}
 .foot-in{max-width:1080px;margin:0 auto;padding:28px 16px 24px}
@@ -168,6 +181,8 @@ footer a{color:#cfe0f5}
       <a href="#food">餐饮</a>
       <a href="#gift">礼品卡</a>
       <a href="#ai">AI订阅</a>
+      <a href="#standard">收录标准</a>
+      <a href="#contact">提交收录</a>
     </nav>
     <span class="upd-badge">数据实查 · 2026-11-05</span>
   </div>
@@ -201,6 +216,13 @@ footer a{color:#cfe0f5}
       <button class="chip" data-cat="gift">礼品卡</button>
       <button class="chip" data-cat="ai">AI订阅</button>
     </div>
+    <label class="sortsel">排序
+      <select id="sort">
+        <option value="def">默认顺序</option>
+        <option value="asc">价格从低到高</option>
+        <option value="desc">价格从高到低</option>
+      </select>
+    </label>
     <div class="result-count" id="rcount"></div>
   </div>
 </div>
@@ -216,37 +238,37 @@ footer a{color:#cfe0f5}
       <div class="pname">爱奇艺 黄金VIP月卡</div>
       <div class="prow"><span class="price"><small>¥</small>15.60</span></div>
       <div class="src">来源：<a href="https://feedov.com/" target="_blank" rel="noopener"><b>蜜蜂汇云 Feedov</b></a></div><div class="go"><a class="go-btn" href="https://feedov.com/" target="_blank" rel="noopener">去来源站看此价 →</a></div>
-      <div class="tags"><span class="tag green">直充</span><span class="tag grey">推荐采购价（免登录页）</span></div>
+      <div class="checked">实查 · 2026-11-05</div><div class="tags"><span class="tag green">直充</span><span class="tag grey">推荐采购价（免登录页）</span></div>
     </article>
     <article class="pcard" data-cat="member" data-text="腾讯视频 VIP月卡 QQ号版 蜜蜂汇云 Feedov" data-link="https://feedov.com/">
       <div class="pname">腾讯视频 VIP月卡（QQ号版）</div>
       <div class="prow"><span class="price"><small>¥</small>17.99</span></div>
       <div class="src">来源：<a href="https://feedov.com/" target="_blank" rel="noopener"><b>蜜蜂汇云 Feedov</b></a></div><div class="go"><a class="go-btn" href="https://feedov.com/" target="_blank" rel="noopener">去来源站看此价 →</a></div>
-      <div class="tags"><span class="tag green">直充</span><span class="tag grey">推荐采购价</span></div>
+      <div class="checked">实查 · 2026-11-05</div><div class="tags"><span class="tag green">直充</span><span class="tag grey">推荐采购价</span></div>
     </article>
     <article class="pcard" data-cat="member" data-text="腾讯视频 VIP年卡 QQ号版 蜜蜂汇云 Feedov" data-link="https://feedov.com/">
       <div class="pname">腾讯视频 VIP年卡（QQ号版）</div>
       <div class="prow"><span class="price"><small>¥</small>134.20</span><span class="conv">约 ¥11.2/月</span></div>
       <div class="src">来源：<a href="https://feedov.com/" target="_blank" rel="noopener"><b>蜜蜂汇云 Feedov</b></a></div><div class="go"><a class="go-btn" href="https://feedov.com/" target="_blank" rel="noopener">去来源站看此价 →</a></div>
-      <div class="tags"><span class="tag green">直充</span></div>
+      <div class="checked">实查 · 2026-11-05</div><div class="tags"><span class="tag green">直充</span></div>
     </article>
     <article class="pcard" data-cat="member" data-text="爱奇艺 黄金VIP年卡 蜜蜂汇云 Feedov" data-link="https://feedov.com/">
       <div class="pname">爱奇艺 黄金VIP年卡</div>
       <div class="prow"><span class="price"><small>¥</small>115.20</span><span class="conv">约 ¥9.6/月</span></div>
       <div class="src">来源：<a href="https://feedov.com/" target="_blank" rel="noopener"><b>蜜蜂汇云 Feedov</b></a></div><div class="go"><a class="go-btn" href="https://feedov.com/" target="_blank" rel="noopener">去来源站看此价 →</a></div>
-      <div class="tags"><span class="tag green">直充</span></div>
+      <div class="checked">实查 · 2026-11-05</div><div class="tags"><span class="tag green">直充</span></div>
     </article>
     <article class="pcard" data-cat="member" data-text="网易云音乐 黑胶VIP月卡 统一社区 hkqhub" data-link="https://hkqhub.com/">
       <div class="pname">网易云音乐 黑胶VIP月卡</div>
       <div class="prow"><span class="price"><small>¥</small>7.20</span></div>
       <div class="src">来源：<a href="https://hkqhub.com/" target="_blank" rel="noopener"><b>统一社区</b></a>（经 hkqhub 实时查价）</div><div class="go"><a class="go-btn" href="https://hkqhub.com/" target="_blank" rel="noopener">去来源站看此价 →</a><span class="go-note">经卡券导航网查价</span></div>
-      <div class="tags"><span class="tag green">直充</span><span class="tag grey">库存需到站核验</span></div>
+      <div class="checked">实查 · 2026-11-05</div><div class="tags"><span class="tag green">直充</span><span class="tag grey">库存需到站核验</span></div>
     </article>
     <article class="pcard" data-cat="member" data-text="腾讯视频 会员7天 快发权益 hkqhub" data-link="https://hkqhub.com/">
       <div class="pname">腾讯视频 会员7天</div>
       <div class="prow"><span class="price"><small>¥</small>9.00</span><span class="conv">约 ¥1.29/天</span></div>
       <div class="src">来源：<a href="https://hkqhub.com/" target="_blank" rel="noopener"><b>快发权益</b></a>（经 hkqhub）</div><div class="go"><a class="go-btn" href="https://hkqhub.com/" target="_blank" rel="noopener">去来源站看此价 →</a><span class="go-note">经卡券导航网查价</span></div>
-      <div class="tags"><span class="tag green">自动充值</span></div>
+      <div class="checked">实查 · 2026-11-05</div><div class="tags"><span class="tag green">自动充值</span></div>
     </article>
   </div>
 
@@ -258,7 +280,7 @@ footer a{color:#cfe0f5}
         <div class="pname">爱奇艺月卡（链接直冲）</div>
         <div class="prow"><span class="price"><small>¥</small>2.25</span></div>
         <div class="src">来源：<a href="https://hkqhub.com/" target="_blank" rel="noopener"><b>卓越权益</b></a>（经 hkqhub）</div><div class="go"><a class="go-btn" href="https://hkqhub.com/" target="_blank" rel="noopener">去来源站看此价 →</a><span class="go-note">经卡券导航网查价</span></div>
-        <div class="tags"><span class="tag red">高风险</span><span class="tag grey">仅移动手机号 · 链接直冲 · 未核验前不建议拿货</span></div>
+        <div class="checked">实查 · 2026-11-05</div><div class="tags"><span class="tag red">高风险</span><span class="tag grey">仅移动手机号 · 链接直冲 · 未核验前不建议拿货</span></div>
       </article>
     </div>
   </div>
@@ -273,49 +295,49 @@ footer a{color:#cfe0f5}
       <div class="pname">瑞幸 通兑30选1</div>
       <div class="prow"><span class="price"><small>¥</small>9.70</span></div>
       <div class="src">来源：<a href="https://feedov.com/" target="_blank" rel="noopener"><b>蜜蜂汇云 Feedov</b></a></div><div class="go"><a class="go-btn" href="https://feedov.com/" target="_blank" rel="noopener">去来源站看此价 →</a></div>
-      <div class="tags"><span class="tag amber">代下单</span><span class="tag grey">推荐采购价</span></div>
+      <div class="checked">实查 · 2026-11-05</div><div class="tags"><span class="tag amber">代下单</span><span class="tag grey">推荐采购价</span></div>
     </article>
     <article class="pcard" data-cat="food" data-text="瑞幸 人气早餐饮品券8选1 川音云 hkqhub" data-link="https://hkqhub.com/">
       <div class="pname">瑞幸 人气早餐饮品券8选1</div>
       <div class="prow"><span class="price"><small>¥</small>8.03</span></div>
       <div class="src">来源：<a href="https://hkqhub.com/" target="_blank" rel="noopener"><b>川音云</b></a>（经 hkqhub）</div><div class="go"><a class="go-btn" href="https://hkqhub.com/" target="_blank" rel="noopener">去来源站看此价 →</a><span class="go-note">经卡券导航网查价</span></div>
-      <div class="tags"><span class="tag green">自动充值</span></div>
+      <div class="checked">实查 · 2026-11-05</div><div class="tags"><span class="tag green">自动充值</span></div>
     </article>
     <article class="pcard" data-cat="food" data-text="麦当劳 麦麦单人餐 蜜蜂汇云 Feedov" data-link="https://feedov.com/">
       <div class="pname">麦当劳 麦麦单人餐</div>
       <div class="prow"><span class="price"><small>¥</small>9.90</span></div>
       <div class="src">来源：<a href="https://feedov.com/" target="_blank" rel="noopener"><b>蜜蜂汇云 Feedov</b></a></div><div class="go"><a class="go-btn" href="https://feedov.com/" target="_blank" rel="noopener">去来源站看此价 →</a></div>
-      <div class="tags"><span class="tag amber">代下单</span></div>
+      <div class="checked">实查 · 2026-11-05</div><div class="tags"><span class="tag amber">代下单</span></div>
     </article>
     <article class="pcard" data-cat="food" data-text="肯德基 任意门活动 蜜蜂汇云 Feedov" data-link="https://feedov.com/">
       <div class="pname">肯德基 任意门活动</div>
       <div class="prow"><span class="price"><small>¥</small>6.45</span></div>
       <div class="src">来源：<a href="https://feedov.com/" target="_blank" rel="noopener"><b>蜜蜂汇云 Feedov</b></a></div><div class="go"><a class="go-btn" href="https://feedov.com/" target="_blank" rel="noopener">去来源站看此价 →</a></div>
-      <div class="tags"><span class="tag amber">代下单</span></div>
+      <div class="checked">实查 · 2026-11-05</div><div class="tags"><span class="tag amber">代下单</span></div>
     </article>
     <article class="pcard" data-cat="food" data-text="星巴克 5元代金券 万屿数卡 hkqhub" data-link="https://hkqhub.com/">
       <div class="pname">星巴克 5元代金券</div>
       <div class="prow"><span class="price"><small>¥</small>4.53</span></div>
       <div class="src">来源：<a href="https://hkqhub.com/" target="_blank" rel="noopener"><b>万屿数卡</b></a>（经 hkqhub）</div><div class="go"><a class="go-btn" href="https://hkqhub.com/" target="_blank" rel="noopener">去来源站看此价 →</a><span class="go-note">经卡券导航网查价</span></div>
-      <div class="tags"><span class="tag blue">官方卡密</span><span class="tag red">质保仅12小时</span></div>
+      <div class="checked">实查 · 2026-11-05</div><div class="tags"><span class="tag blue">官方卡密</span><span class="tag red">质保仅12小时</span></div>
     </article>
     <article class="pcard" data-cat="food" data-text="麦当劳 自助机5元代金券 云秒权益 hkqhub" data-link="https://hkqhub.com/">
       <div class="pname">麦当劳 自助机5元代金券</div>
       <div class="prow"><span class="price"><small>¥</small>4.63</span></div>
       <div class="src">来源：<a href="https://hkqhub.com/" target="_blank" rel="noopener"><b>云秒权益</b></a>（经 hkqhub）</div><div class="go"><a class="go-btn" href="https://hkqhub.com/" target="_blank" rel="noopener">去来源站看此价 →</a><span class="go-note">经卡券导航网查价</span></div>
-      <div class="tags"><span class="tag blue">卡密</span></div>
+      <div class="checked">实查 · 2026-11-05</div><div class="tags"><span class="tag blue">卡密</span></div>
     </article>
     <article class="pcard" data-cat="food" data-text="肯德基 礼品卡5元直冲 萤火权益 hkqhub" data-link="https://hkqhub.com/">
       <div class="pname">肯德基 礼品卡5元直冲</div>
       <div class="prow"><span class="price"><small>¥</small>4.88</span></div>
       <div class="src">来源：<a href="https://hkqhub.com/" target="_blank" rel="noopener"><b>萤火权益</b></a>（经 hkqhub）</div><div class="go"><a class="go-btn" href="https://hkqhub.com/" target="_blank" rel="noopener">去来源站看此价 →</a><span class="go-note">经卡券导航网查价</span></div>
-      <div class="tags"><span class="tag green">自动充值</span></div>
+      <div class="checked">实查 · 2026-11-05</div><div class="tags"><span class="tag green">自动充值</span></div>
     </article>
     <article class="pcard" data-cat="food" data-text="喜茶 5元代金券 福气惠卡券 hkqhub" data-link="https://hkqhub.com/">
       <div class="pname">喜茶 5元代金券</div>
       <div class="prow"><span class="price"><small>¥</small>3.00</span></div>
       <div class="src">来源：<a href="https://hkqhub.com/" target="_blank" rel="noopener"><b>福气惠卡券</b></a>（经 hkqhub）</div><div class="go"><a class="go-btn" href="https://hkqhub.com/" target="_blank" rel="noopener">去来源站看此价 →</a><span class="go-note">经卡券导航网查价</span></div>
-      <div class="tags"><span class="tag amber">人工代充</span><span class="tag grey">急单勿下 · 超72小时自动退类条款</span></div>
+      <div class="checked">实查 · 2026-11-05</div><div class="tags"><span class="tag amber">人工代充</span><span class="tag grey">急单勿下 · 超72小时自动退类条款</span></div>
     </article>
   </div>
 </section>
@@ -332,7 +354,7 @@ footer a{color:#cfe0f5}
         <div class="arrow">›</div>
         <div class="side rec"><span>回收参考</span><b>约 91–93 折</b><br><span>行业口径，未单站核实</span></div>
       </div>
-      <div class="go"><a class="go-btn" href="https://hkqhub.com/" target="_blank" rel="noopener">去来源站看此价 →</a><span class="go-note">经卡券导航网查价</span></div><div class="vs-note">蜜蜂汇云采购价 99.2 折反而更贵；批发台 ≠ 最低</div>
+      <div class="checked">实查 · 2026-11-05</div><div class="go"><a class="go-btn" href="https://hkqhub.com/" target="_blank" rel="noopener">去来源站看此价 →</a><span class="go-note">经卡券导航网查价</span></div><div class="vs-note">蜜蜂汇云采购价 99.2 折反而更贵；批发台 ≠ 最低</div>
     </article>
     <article class="vs-card" data-cat="gift" data-text="天猫超市卡 100元 买券啦" data-link="https://www.kaquan.cn/">
       <div class="pname">天猫超市卡 100元</div>
@@ -341,7 +363,7 @@ footer a{color:#cfe0f5}
         <div class="arrow">›</div>
         <div class="side rec"><span>回收参考</span><b>约 92–94 折</b><br><span>行业口径</span></div>
       </div>
-      <div class="go"><a class="go-btn" href="https://www.kaquan.cn/" target="_blank" rel="noopener">去来源站看此价 →</a></div><div class="vs-note">蜜蜂汇云卡密价 99.17 折；零售寄售层反而便宜</div>
+      <div class="checked">实查 · 2026-11-05</div><div class="go"><a class="go-btn" href="https://www.kaquan.cn/" target="_blank" rel="noopener">去来源站看此价 →</a></div><div class="vs-note">蜜蜂汇云卡密价 99.17 折；零售寄售层反而便宜</div>
     </article>
     <article class="vs-card" data-cat="gift" data-text="星巴克卡 券 买券啦" data-link="https://www.kaquan.cn/">
       <div class="pname">星巴克卡 / 券</div>
@@ -350,7 +372,7 @@ footer a{color:#cfe0f5}
         <div class="arrow">›</div>
         <div class="side rec"><span>回收参考</span><b>—</b></div>
       </div>
-      <div class="go"><a class="go-btn" href="https://www.kaquan.cn/" target="_blank" rel="noopener">去来源站看此价 →</a></div><div class="vs-note">通兑券多为临期 / 限品类 / 不积星，拿货看清条款</div>
+      <div class="checked">实查 · 2026-11-05</div><div class="go"><a class="go-btn" href="https://www.kaquan.cn/" target="_blank" rel="noopener">去来源站看此价 →</a></div><div class="vs-note">通兑券多为临期 / 限品类 / 不积星，拿货看清条款</div>
     </article>
   </div>
 </section>
@@ -364,25 +386,25 @@ footer a{color:#cfe0f5}
       <div class="pname">GPT Plus</div>
       <div class="prow"><span class="price"><small>约 ¥</small>9.90</span><span class="conv">在售最低</span></div>
       <div class="src">市场快照：<b>1,291 家店 / 9,458 条报价</b></div>
-      <div class="tags"><span class="tag grey">行情快照</span><span class="tag amber">特殊渠道</span><span class="tag grey">最低价多为特殊渠道，稳定性自担</span></div>
+      <div class="checked">快照 · 2026-11-05</div><div class="tags"><span class="tag grey">行情快照</span><span class="tag amber">特殊渠道</span><span class="tag grey">最低价多为特殊渠道，稳定性自担</span></div>
     </article>
     <article class="pcard" data-cat="ai" data-text="Claude Pro AI价网">
       <div class="pname">Claude Pro</div>
       <div class="prow"><span class="price"><small>约 ¥</small>138</span><span class="conv">在售最低</span></div>
       <div class="src">市场快照：<b>480 家店</b></div>
-      <div class="tags"><span class="tag grey">AI价网快照</span></div>
+      <div class="checked">快照 · 2026-11-05</div><div class="tags"><span class="tag grey">AI价网快照</span></div>
     </article>
     <article class="pcard" data-cat="ai" data-text="Gemini Pro AI价网">
       <div class="pname">Gemini Pro</div>
       <div class="prow"><span class="price"><small>约 ¥</small>6</span><span class="conv">在售最低</span></div>
       <div class="src">市场快照：<b>645 家店</b></div>
-      <div class="tags"><span class="tag grey">行情快照</span><span class="tag amber">家庭组 / 地区价</span><span class="tag grey">低价多为家庭组/地区价</span></div>
+      <div class="checked">快照 · 2026-11-05</div><div class="tags"><span class="tag grey">行情快照</span><span class="tag amber">家庭组 / 地区价</span><span class="tag grey">低价多为家庭组/地区价</span></div>
     </article>
     <article class="pcard" data-cat="ai" data-text="Muse 邀请 成品号">
       <div class="pname">Muse 邀请 / 成品号</div>
       <div class="prow"><span class="price" style="font-size:19px">47 家店 / 91 条报价</span></div>
       <div class="src">教程与交流：<b>见下方频道</b></div>
-      <div class="tags"><span class="tag grey">行情快照</span><span class="tag blue">教程引流</span></div>
+      <div class="checked">快照 · 2026-11-05</div><div class="tags"><span class="tag grey">行情快照</span><span class="tag blue">教程引流</span></div>
     </article>
   </div>
   <div class="ai-note">
@@ -392,6 +414,43 @@ footer a{color:#cfe0f5}
 </section>
 
 <div class="empty" id="empty">没有匹配的商品，换个关键词试试。</div>
+
+
+<!-- ============ 收录标准与数据说明 ============ -->
+<section id="standard">
+  <div class="sec-head"><h2>收录标准与数据说明</h2><span class="sec-tag">信任件</span></div>
+  <p class="sec-sub">把丑话写在明面上：数据怎么来的、多久更新、什么样的货能上榜、拿货怎么防骗，全部写清。</p>
+  <div class="std">
+    <div class="std-grid">
+      <div>
+        <h3>数据来源与采集方法</h3>
+        <p>每条价格均来自公开页面的实查记录，逐条标注来源站与交付方式；经 hkqhub 查价的条目已在卡上注明。标"行业口径"的数据为多方公开口径参考，未做单站核实。</p>
+      </div>
+      <div>
+        <h3>更新口径</h3>
+        <p>本站为人工实查快照（最近实查 2026-11-05），不是实时接口价。价格会过期，卡上已逐条标注实查日期；拿货前请到来源站复核库存与最新价，最终以来源站页面为准。</p>
+      </div>
+      <div>
+        <h3>收录原则</h3>
+        <ul>
+          <li>只收录公开可访问、价格可复核的来源</li>
+          <li>直充 / 卡密 / 人工代充 / 链接直冲分开标注，不混排比价</li>
+          <li>异常低价进高风险隔离区，不进正常榜单最低价口径</li>
+        </ul>
+      </div>
+      <div>
+        <h3>拿货防骗提醒</h3>
+        <ul>
+          <li>首单先小额试单，确认交付再放量</li>
+          <li>只在来源站站内付款，不私下转账</li>
+          <li>保存订单号与商品说明截图，售后先走来源站渠道</li>
+          <li>远低于全榜均价的，先怀疑交付方式，再看价格</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:14px;font-size:12.5px;color:var(--ink2)">货源站提交收录：经人工核验（站点可访问、价格可复核、交付方式写得清）后上榜，入口在下方对接区，或点 <a href="https://t.me/AIShengzhang" target="_blank" rel="noopener">进频道提交收录</a>。</p>
+  </div>
+</section>
 
 <!-- ============ 对接入口 ============ -->
 <section id="contact" style="margin-bottom:8px">
@@ -424,6 +483,7 @@ footer a{color:#cfe0f5}
           <li><a href="https://www.kaquan.cn/" target="_blank" rel="noopener">卡券比价网</a></li>
           <li><a href="https://hkqhub.com/" target="_blank" rel="noopener">卡券导航网</a></li>
           <li><a href="https://t.me/AIShengzhang" target="_blank" rel="noopener">向上生长｜AI实干笔记</a></li>
+          <li><a href="https://t.me/AIShengzhang" target="_blank" rel="noopener">货源站提交收录（经频道人工核验）</a></li>
         </ul>
       </div>
     </div>
@@ -466,6 +526,31 @@ footer a{color:#cfe0f5}
     b.classList.add('on');cat=b.getAttribute('data-cat');apply();
   });
   apply();
+
+  // 排序：按各分区内卡片价格重排（礼品卡按买入价；无价格的卡保持原位沉底）
+  var sortSel=document.getElementById('sort');
+  cards.forEach(function(c,i){c.setAttribute('data-ord',i)});
+  function priceOf(c){
+    var t='';
+    if(c.classList.contains('vs-card')){var b=c.querySelector('.buy b');t=b?b.textContent:''}
+    else{var p=c.querySelector('.price');t=p?p.textContent:''}
+    var m=t.replace(/,/g,'').match(/¥\s*([0-9]+(?:\.[0-9]+)?)/);
+    return m?parseFloat(m[1]):null;
+  }
+  sortSel.addEventListener('change',function(){
+    var mode=sortSel.value;
+    [].forEach.call(document.querySelectorAll('.grid'),function(g){
+      var items=[].slice.call(g.children).filter(function(el){return el.hasAttribute('data-cat')});
+      items.sort(function(a,b){
+        if(mode==='def')return (+a.getAttribute('data-ord'))-(+b.getAttribute('data-ord'));
+        var pa=priceOf(a),pb=priceOf(b);
+        if(pa===null&&pb===null)return (+a.getAttribute('data-ord'))-(+b.getAttribute('data-ord'));
+        if(pa===null)return 1; if(pb===null)return -1;
+        return mode==='asc'?pa-pb:pb-pa;
+      });
+      items.forEach(function(el){g.appendChild(el)});
+    });
+  });
   // 整卡可点：跳来源站（点到卡内链接时不重复触发）
   [].forEach.call(document.querySelectorAll('[data-link]'),function(c){
     c.addEventListener('click',function(e){
