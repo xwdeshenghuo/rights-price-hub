@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://xwdeshenghuo.github.io/rights-price-hub/sitemap.xml
