@@ -70,6 +70,14 @@ h1 .grad{background:linear-gradient(92deg,#a5a4ff,#7170ff 45%,#4ade80);-webkit-b
 .price span{font-size:11.5px;color:var(--dim)}
 .risk-hi{border-color:rgba(255,107,107,.45)!important}
 .risk-hi .name::after{content:"高风险";margin-left:8px;font-size:10.5px;color:#0d0505;background:var(--red);border-radius:5px;padding:2px 6px;font-weight:700;vertical-align:2px}
+.buybtn{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;font-size:13px;font-weight:600;padding:8px 15px;border-radius:10px;white-space:nowrap}
+.buybtn:hover{filter:brightness(1.15)}
+.cta{margin:26px 0 4px;border:1px solid rgba(113,112,255,.4);border-radius:16px;padding:22px;background:linear-gradient(120deg,rgba(113,112,255,.13),rgba(74,222,128,.06));display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.cta h3{font-size:17px;letter-spacing:-.02em}
+.cta p{color:var(--sub);font-size:13.5px;line-height:1.75;margin-top:4px;max-width:560px}
+.cta .acts{margin-left:auto;display:flex;gap:9px;flex-wrap:wrap}
+.cta a.btn{padding:10px 18px;border-radius:11px;font-size:13.5px;font-weight:600;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff}
+.cta a.btn.ghost{background:rgba(255,255,255,.05);border:1px solid var(--line2)}
 .empty{text-align:center;color:var(--dim);padding:56px 0;font-size:14.5px;line-height:2}
 .note{margin:22px 0 8px;font-size:12.5px;color:var(--dim);line-height:1.9;border:1px solid var(--line);border-radius:var(--r);padding:15px 18px;background:rgba(255,255,255,.02)}
 footer{border-top:1px solid var(--line);margin-top:44px;padding:26px 0 42px;color:var(--dim);font-size:12.5px;line-height:2;text-align:center}
@@ -112,6 +120,11 @@ footer a{color:var(--sub)}footer a:hover{color:var(--txt)}
     </div>
   </div>
   <div class="grid" id="grid"></div>
+  <div class="cta">
+    <div><h3>想按榜上的价拿货？两条路</h3>
+    <p>① 每条报价右侧「去买」直达源站商品页，自己下单最稳。② 懒得注册一堆站：走代下单——把商品名发我们，按站内最优价帮你买好发到你手里，只收页面零售价，中间不加价藏猫腻，价格全程可对榜核对。</p></div>
+    <div class="acts"><a class="btn" href="https://t.me/AIShengzhang" target="_blank" rel="noopener">TG 频道下单</a><a class="btn ghost" href="mailto:wxr99307@qq.com">QQ邮箱 wxr99307@qq.com</a></div>
+  </div>
   <div class="note">⚠️ 口径说明：直充到账、链接直冲、共享号、CDK 不是同一种货，已在每条标注交付方式；标红「高风险」的多为链接直冲/质保极短，图便宜翻车别怪没提醒。价格为页面标注的核实日快照，货源站价格实时浮动，下单前以源站为准。</div>
 </div>
 
@@ -123,25 +136,26 @@ footer a{color:var(--sub)}footer a:hover{color:var(--txt)}
 let DATA=[], sortMode='price';
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const SRCURL={'万屿数卡':k=>'https://vip.wanyuw.top/category?keyword='+encodeURIComponent(k),'蜜蜂汇云Feedov':()=>'https://feedov.com/#/merchantData/product','统一社区':()=>'https://tysqu.com','川音云':()=>'https://888.chuanyin.vip','快发权益':()=>'https://vip.kuaifaquanyi.com','卓越权益':()=>'https://www.zhuoyueqy.com','点卡城':()=>'https://www.6cdk.cn','优享票易':()=>'https://vip.egzs.cn','卡券云权益':()=>'https://vip.cccsup.com','深度数卡':()=>'https://deepcard.cc','福气惠卡券':()=>'https://www.fuqih.com','云采购权益':()=>'https://m.yuncgo.com','云秒权益':()=>'https://yunmiaoquanyi.99hy.top','买券啦':()=>'https://maiquanla.com'};
+function buyUrl(r){const f=SRCURL[r.source]; if(!f) return 'index.html'; const k=(r.kw||r.name).split(' ')[0]; return f(k);}
 function render(){
   const kw=$('q').value.trim().toLowerCase();
-  let rows=DATA.filter(r=>!kw || (r.product+' '+r.source+' '+r.category).toLowerCase().includes(kw));
+  let rows=DATA.filter(r=>!kw || (r.name+' '+r.source+' '+(r.kw||'')).toLowerCase().includes(kw));
   rows.sort((a,b)=>{
-    if(sortMode==='disc') return (a.discount??9)-(b.discount??9);
-    if(sortMode==='unit') return (a.unit_day??9e9)-(b.unit_day??9e9);
+    if(sortMode==='disc') return ((a.face?a.price/a.face:9)-(b.face?b.price/b.face:9));
+    if(sortMode==='unit') return (parseFloat((a.per||'9e9').replace(/[^0-9.]/g,''))||9e9)-(parseFloat((b.per||'9e9').replace(/[^0-9.]/g,''))||9e9);
     return a.price-b.price;
   });
-  $('cnt').innerHTML = kw? `“<b>${esc(kw)}</b>” 共 <b>${rows.length}</b> 条报价` : `全部 <b>${rows.length}</b> 条报价`;
+  $('cnt').innerHTML = kw? `"<b>${esc(kw)}</b>" 共 <b>${rows.length}</b> 条报价` : `全部 <b>${rows.length}</b> 条报价`;
   if(!rows.length){ $('grid').innerHTML='<div class="empty">没查到这个词的报价。<br>换个短词试试，比如「爱奇艺」「瑞幸」「E卡」。</div>'; return; }
   const minP = Math.min(...rows.map(r=>r.price));
   $('grid').innerHTML = rows.map(r=>{
     const best = r.price===minP && kw;
-    const disc = r.discount? `<span>${r.discount<1?('约'+(r.discount*10).toFixed(1)+'折'):''}</span>`:'<span></span>';
-    const unit = r.unit_day? `日均 ¥${r.unit_day.toFixed(2)}` : (r.face? `面值 ¥${r.face}`:'');
-    return `<div class="row ${best?'best':''} ${r.risk==='高'?'risk-hi':''}">
-      <div class="name"><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.product)}</a></div>
-      <div class="price"><b class="${best?'low':''}">¥${r.price.toFixed(2)}</b>${disc}</div>
-      <div class="meta"><span class="tag src">${esc(r.source)}</span><span class="tag">${esc(r.delivery||'')}</span>${r.stock?`<span class="tag">库存 ${esc(r.stock)}</span>`:''}<span>${unit}</span><span>核实 ${esc(r.verified||'')}</span></div>
+    const disc = r.face? `<span>面值 ¥${r.face} · 约${(r.price/r.face*10).toFixed(1)}折</span>` : `<span>${esc(r.per||'')}</span>`;
+    return `<div class="row ${best?'best':''} ${r.risk==='high'?'risk-hi':''}">
+      <div class="name">${esc(r.name)}</div>
+      <div class="price"><b class="${best?'low':''}">¥${Number(r.price).toFixed(2)}</b>${disc}<a class="buybtn" href="${buyUrl(r)}" target="_blank" rel="noopener">去买 →</a></div>
+      <div class="meta"><span class="tag src">${esc(r.source)}</span><span class="tag">${esc(r.type||'')}</span>${r.risk==='warn'?'<span class="tag">需注意</span>':''}<span>核实 ${esc(r.checked||'')}</span>${r.note?`<span>${esc(r.note)}</span>`:''}</div>
     </div>`;
   }).join('');
 }
@@ -149,7 +163,7 @@ fetch('data.json').then(r=>r.json()).then(d=>{
   DATA=d.quotes||[];
   $('st-quotes').textContent=DATA.length;
   $('st-sources').textContent=new Set(DATA.map(r=>r.source)).size;
-  $('st-cats').textContent=new Set(DATA.map(r=>r.category)).size;
+  $('st-cats').textContent=new Set(DATA.map(r=>(r.kw||'').split(' ')[1]||r.kw)).size;
   $('upd').textContent='更新 '+(d.updated||'');
   const hot=['爱奇艺','腾讯视频','网易云','瑞幸','麦当劳','肯德基','京东E卡','星巴克'];
   $('hot').innerHTML=hot.map(h=>`<button data-k="${h}">${h}</button>`).join('');
