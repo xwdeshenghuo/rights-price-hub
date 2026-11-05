@@ -136,7 +136,7 @@ footer a{color:var(--sub)}footer a:hover{color:var(--txt)}
 let DATA=[], sortMode='price';
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const SRCURL={'万屿数卡':k=>'https://vip.wanyuw.top/category?keyword='+encodeURIComponent(k),'蜜蜂汇云Feedov':()=>'https://feedov.com/#/merchantData/product','统一社区':()=>'https://tysqu.com','川音云':()=>'https://888.chuanyin.vip','快发权益':()=>'https://vip.kuaifaquanyi.com','卓越权益':()=>'https://www.zhuoyueqy.com','点卡城':()=>'https://www.6cdk.cn','优享票易':()=>'https://vip.egzs.cn','卡券云权益':()=>'https://vip.cccsup.com','深度数卡':()=>'https://deepcard.cc','福气惠卡券':()=>'https://www.fuqih.com','云采购权益':()=>'https://m.yuncgo.com','云秒权益':()=>'https://yunmiaoquanyi.99hy.top','买券啦':()=>'https://maiquanla.com'};
+const SRCURL={'万屿数卡':k=>'https://vip.wanyuw.top/category?keyword='+encodeURIComponent(k),'蜜蜂汇云Feedov':()=>'https://feedov.com/#/merchantData/product','统一社区':()=>'https://tysqu.com','川音云':()=>'https://888.chuanyin.vip','快发权益':()=>'https://vip.kuaifaquanyi.com','卓越权益':()=>'https://www.zhuoyueqy.com','点卡城':()=>'https://www.6cdk.cn','优享票易':()=>'https://vip.egzs.cn','卡券云权益':()=>'https://vip.cccsup.com','深度数卡':()=>'https://deepcard.cc','福气惠卡券':()=>'https://www.fuqih.com','云采购权益':()=>'https://m.yuncgo.com','云秒权益':()=>'https://yunmiaoquanyi.99hy.top','买券啦':()=>'https://maiquanla.com','萤火权益':()=>'https://sup.yinghuowl.cn'};
 function buyUrl(r){const f=SRCURL[r.source]; if(!f) return 'index.html'; const k=(r.kw||r.name).split(' ')[0]; return f(k);}
 function render(){
   const kw=$('q').value.trim().toLowerCase();
