@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>实时查价 · 权益货源价榜</title>
+<meta name="description" content="输入关键词，多源货源报价即时聚合：按价排序、折扣率折算、交付方式与风险标签。覆盖会员直充、餐饮代下单、礼品卡。">
+<style>
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;margin:0;background:#f6f7f9;color:#1a1a1a}
+header{background:#0f5132;color:#fff;padding:22px 16px;text-align:center}
+header h1{margin:0 0 6px;font-size:22px}
+header p{margin:0;opacity:.85;font-size:13px}
+main{max-width:880px;margin:0 auto;padding:16px}
+.searchbox{display:flex;gap:8px;margin:6px 0 4px}
+.searchbox input{flex:1;padding:13px 14px;font-size:16px;border:2px solid #0f5132;border-radius:10px;outline:none}
+.searchbox button{padding:0 20px;font-size:15px;background:#0f5132;color:#fff;border:none;border-radius:10px;cursor:pointer}
+.hot{font-size:12px;color:#666;margin:6px 0 12px}
+.hot a{color:#0f5132;margin-right:10px;cursor:pointer;text-decoration:underline}
+.stats{font-size:12px;color:#888;margin-bottom:10px}
+table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+th,td{border-bottom:1px solid #eee;padding:8px;text-align:left;vertical-align:top}
+th{background:#fafafa;color:#555}
+.price{font-weight:700;color:#c0392b;white-space:nowrap}
+.tag{display:inline-block;background:#eef4ff;color:#2456a6;border-radius:4px;padding:0 5px;font-size:11px;margin-right:4px}
+.tag.high{background:#fdf0ec;color:#b03a1e}
+.tag.warn{background:#fdf6ec;color:#a86a12}
+tr{animation:fade .3s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(3px)}to{opacity:1}}
+.empty{padding:24px;text-align:center;color:#888;background:#fff;border-radius:10px}
+.note{font-size:12px;color:#666;line-height:1.7;margin-top:12px}
+a{color:#0f5132}
+</style>
+</head>
+<body>
+<header>
+<h1>🔍 权益货源实时查价</h1>
+<p>输个词，多家货源报价一起出 · 按价排序 · 折扣率自动折算 · 高风险单独标红</p>
+</header>
+<main>
+<div class="searchbox">
+<input id="q" type="text" placeholder="试试：爱奇艺 / 瑞幸 / 京东E卡 / 网易云" autocomplete="off">
+<button id="go">查价</button>
+</div>
+<div class="hot">热门：
+<a data-k="爱奇艺">爱奇艺</a><a data-k="腾讯视频">腾讯视频</a><a data-k="瑞幸">瑞幸</a><a data-k="麦当劳">麦当劳</a><a data-k="肯德基">肯德基</a><a data-k="京东E卡">京东E卡</a><a data-k="网易云">网易云</a><a data-k="星巴克">星巴克</a>
+</div>
+<div class="stats" id="stats">数据加载中…</div>
+<div id="results"></div>
+<p class="note">数据口径：种子数据为 2026-11-05 人工实查（蜜蜂汇云免登录采购价页、hkqhub 实时查价、买券啦零售样本），自动采集管道接入中，接入站将持续扩充。报价为查得时点值，拿货前请到来源站复核库存与最新价。本站不卖货、不担保任何货源站。回到<a href="./">价榜首页</a>。</p>
+</main>
+<script>
+let DATA=null;
+const $=s=>document.querySelector(s);
+fetch('data.json').then(r=>r.json()).then(d=>{
+  DATA=d;
+  const srcs=new Set(d.quotes.map(q=>q.source));
+  $('#stats').textContent=`已接入 ${srcs.size} 个报价源 · ${d.quotes.length} 条报价 · 数据日期 ${d.updated} · 输入关键词开始查价`;
+  const pre=new URLSearchParams(location.search).get('q');
+  if(pre){$('#q').value=pre;run();}
+});
+function fmt(n){return '¥'+(Math.round(n*100)/100).toString();}
+function run(){
+  const kw=$('#q').value.trim();
+  const box=$('#results');
+  if(!DATA)return;
+  if(!kw){box.innerHTML='<div class="empty">输入关键词查价，或点上面的热门词。</div>';return;}
+  const toks=kw.split(/\s+/);
+  let rows=DATA.quotes.filter(q=>{const hay=(q.name+' '+q.kw+' '+q.source);return toks.every(t=>hay.includes(t));});
+  rows.sort((a,b)=>a.price-b.price);
+  if(!rows.length){box.innerHTML='<div class="empty">没查到「'+kw+'」的报价。这个品类可能还没接入，换个词试试。</div>';return;}
+  let h='<table><tr><th>商品</th><th>报价</th><th>折算</th><th>来源</th><th>交付/口径</th></tr>';
+  rows.forEach((q,i)=>{
+    const disc=q.face?((q.price/q.face*100).toFixed(1)+'折'):(q.per||'—');
+    const tag=q.risk==='high'?'<span class="tag high">高风险</span>':(q.risk==='warn'?'<span class="tag warn">注意</span>':'');
+    h+=`<tr style="animation-delay:${i*40}ms"><td>${q.name}</td><td class="price">${fmt(q.price)}</td><td>${disc}</td><td>${q.source}</td><td><span class="tag">${q.type}</span>${tag}<div style="color:#888;font-size:11px">${q.note||''} 实查${q.checked}</div></td></tr>`;
+  });
+  h+='</table>';
+  box.innerHTML=h;
+  $('#stats').textContent=`「${kw}」共 ${rows.length} 条报价，最低 ${fmt(rows[0].price)}（${rows[0].source}）`;
+}
+$('#go').onclick=run;
+$('#q').addEventListener('keydown',e=>{if(e.key==='Enter')run();});
+$('#q').addEventListener('input',()=>{if($('#q').value.trim().length>=2)run();});
+document.querySelectorAll('.hot a').forEach(a=>a.onclick=()=>{$('#q').value=a.dataset.k;run();});
+</script>
+</body>
+</html>
