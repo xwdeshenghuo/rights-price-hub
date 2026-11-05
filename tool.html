@@ -122,7 +122,7 @@ footer a{color:var(--sub)}footer a:hover{color:var(--txt)}
   <div class="grid" id="grid"></div>
   <div class="cta">
     <div><h3>想按榜上的价拿货？两条路</h3>
-    <p>① 每条报价右侧「去买」直达源站商品页，自己下单最稳。② 懒得注册一堆站：走代下单——把商品名发我们，按站内最优价帮你买好发到你手里，只收页面零售价，中间不加价藏猫腻，价格全程可对榜核对。</p></div>
+    <p>① 每条报价右侧「去买」直达源站商品页，自己下单最稳。② 懒得注册一堆站：走代下单——把商品名发我们，按站内最优价帮你买好发到你手里，只收页面零售价，中间不加价藏猫腻，价格全程可对榜核对。③ 你是卖家/货源站：本页价格每日自动更新、全网同行都在这查价，货源收录与合作同样走右侧联系方式。</p></div>
     <div class="acts"><a class="btn" href="https://t.me/AIShengzhang" target="_blank" rel="noopener">TG 频道下单</a><a class="btn ghost" href="mailto:wxr99307@qq.com">QQ邮箱 wxr99307@qq.com</a></div>
   </div>
   <div class="note">⚠️ 口径说明：直充到账、链接直冲、共享号、CDK 不是同一种货，已在每条标注交付方式；标红「高风险」的多为链接直冲/质保极短，图便宜翻车别怪没提醒。价格为页面标注的核实日快照，货源站价格实时浮动，下单前以源站为准。</div>
@@ -136,7 +136,7 @@ footer a{color:var(--sub)}footer a:hover{color:var(--txt)}
 let DATA=[], sortMode='price';
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const SRCURL={'万屿数卡':k=>'https://vip.wanyuw.top/category?keyword='+encodeURIComponent(k),'蜜蜂汇云Feedov':()=>'https://feedov.com/#/merchantData/product','统一社区':()=>'https://tysqu.com','川音云':()=>'https://888.chuanyin.vip','快发权益':()=>'https://vip.kuaifaquanyi.com','卓越权益':()=>'https://www.zhuoyueqy.com','点卡城':()=>'https://www.6cdk.cn','优享票易':()=>'https://vip.egzs.cn','卡券云权益':()=>'https://vip.cccsup.com','深度数卡':()=>'https://deepcard.cc','福气惠卡券':()=>'https://www.fuqih.com','云采购权益':()=>'https://m.yuncgo.com','云秒权益':()=>'https://yunmiaoquanyi.99hy.top','买券啦':()=>'https://maiquanla.com','萤火权益':()=>'https://sup.yinghuowl.cn'};
+const SRCURL={'万屿数卡':k=>'https://vip.wanyuw.top/category?keyword='+encodeURIComponent(k),'蜜蜂汇云Feedov':()=>'https://feedov.com/#/merchantData/product','统一社区':()=>'https://tysqu.com','川音云':()=>'https://888.chuanyin.vip','快发权益':()=>'https://vip.kuaifaquanyi.com','卓越权益':()=>'https://www.zhuoyueqy.com','点卡城':()=>'https://www.6cdk.cn','优享票易':()=>'https://vip.egzs.cn','卡券云权益':()=>'https://vip.cccsup.com','深度数卡':()=>'https://deepcard.cc','福气惠卡券':()=>'https://www.fuqih.com','云采购权益':()=>'https://m.yuncgo.com','云秒权益':()=>'https://yunmiaoquanyi.99hy.top','买券啦':()=>'https://maiquanla.com','萤火权益':()=>'https://sup.yinghuowl.cn','ABC数卡':()=>'https://abc.101s.cc','91会员权益':()=>'https://qy.91qy.cn','九六城堡':()=>'https://9696.zybk.net','迅捷权益':()=>'https://www.ssmvip6.top','零点权益':()=>'https://vip.lind0.cn','北归权益':()=>'https://mdl.9ip.top','小乐权益':()=>'https://123.xiaoleyingshi.com','聚合权益':()=>'https://shop.jhmdl.cn','佰润权益':()=>'https://shop.bairunqy.com'};
 function buyUrl(r){const f=SRCURL[r.source]; if(!f) return 'index.html'; const k=(r.kw||r.name).split(' ')[0]; return f(k);}
 function render(){
   const kw=$('q').value.trim().toLowerCase();
