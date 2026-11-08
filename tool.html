@@ -3,8 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>实时查价 · 权益货源价榜</title>
-<meta name="description" content="输入商品名，跨全部已收录货源站实时比价：会员直充、餐饮代下单、礼品卡、AI订阅供货价一次看全。">
+<title>权益实时查价 · 会员拿货价/代下单进货价/礼品卡供货价多源比价 | 权益货源价榜</title>
+<meta name="description" content="输入商品名，跨多家已收录货源站一次比价：爱奇艺/腾讯视频/网易云会员拿货价、瑞幸肯德基代下单进货价、京东E卡供货价与回收参考、AI订阅价格，按价排序，逐条标注来源、交付方式、风险与核实日期。">
+<meta name="keywords" content="会员拿货价,会员供货价,代下单进货价,礼品卡回收价,权益查价,卡券比价,京东E卡供货价,爱奇艺会员批发价,瑞幸代下单价格">
+<link rel="canonical" href="https://xwdeshenghuo.github.io/rights-price-hub/tool.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="权益货源价榜">
+<meta property="og:title" content="权益实时查价 · 会员拿货价/代下单进货价/礼品卡供货价多源比价">
+<meta property="og:description" content="输个词，多家货源报价一起出、按价排序：会员直充、餐饮代下单、礼品卡、AI订阅供货价，逐条标注来源与风险。">
+<meta property="og:url" content="https://xwdeshenghuo.github.io/rights-price-hub/tool.html">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="权益实时查价 · 多源供货价比价 | 权益货源价榜">
+<meta name="twitter:description" content="会员拿货价、代下单进货价、礼品卡供货价一次查全，按价排序，标注来源、交付方式与风险。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
@@ -94,7 +105,7 @@ footer a{color:var(--sub)}footer a:hover{color:var(--txt)}
 
 <div class="wrap">
   <section class="hero">
-    <span class="kicker"><span class="dot"></span>货源侧实时比价 · 数据逐条人工核实</span>
+    <span class="kicker"><span class="dot"></span>货源侧多源比价 · 每条标注来源与核实日期</span>
     <h1>拿货之前<br>先把全网<span class="grad">最低价</span>查清楚</h1>
     <p>会员直充、餐饮代下单、礼品卡、AI 订阅 —— 同一个商品，不同货源站能差出好几块。我们把价格、口径和风险一次摆平。</p>
     <div class="searchbox">
@@ -106,7 +117,7 @@ footer a{color:var(--sub)}footer a:hover{color:var(--txt)}
     <div class="stats">
       <div class="stat"><b class="mono" id="st-quotes">–</b><span>已核实报价</span></div>
       <div class="stat"><b class="mono" id="st-sources">–</b><span>报价来源站</span></div>
-      <div class="stat"><b class="mono">101</b><span>货源站全名单（持续接入中）</span></div>
+      <div class="stat"><b class="mono" id="st-upd">–</b><span>数据更新日期</span></div>
       <div class="stat"><b class="mono" id="st-cats">–</b><span>覆盖品类</span></div>
     </div>
   </section>
@@ -122,14 +133,15 @@ footer a{color:var(--sub)}footer a:hover{color:var(--txt)}
   <div class="grid" id="grid"></div>
   <div class="cta">
     <div><h3>想按榜上的价拿货？两条路</h3>
-    <p>① 每条报价右侧「去买」直达源站商品页，自己下单最稳。② 懒得注册一堆站：走代下单——把商品名发我们，按站内最优价帮你买好发到你手里，只收页面零售价，中间不加价藏猫腻，价格全程可对榜核对。③ 你是卖家/货源站：本页价格每日自动更新、全网同行都在这查价，货源收录与合作同样走右侧联系方式。</p></div>
+    <p>① 每条报价右侧「去买」直达源站商品页，自己下单最稳。② 懒得注册一堆站：走代下单——把商品名发我们，按站内最优价帮你买好发到你手里，只收页面零售价，中间不加价藏猫腻，价格全程可对榜核对。③ 你是卖家/货源站：本页价格定期自动采集更新，货源收录与合作同样走右侧联系方式。</p></div>
     <div class="acts"><a class="btn" href="https://t.me/AIShengzhang" target="_blank" rel="noopener">TG 频道下单</a><a class="btn ghost" href="mailto:wxr99307@qq.com">QQ邮箱 wxr99307@qq.com</a></div>
   </div>
   <div class="note">⚠️ 口径说明：直充到账、链接直冲、共享号、CDK 不是同一种货，已在每条标注交付方式；标红「高风险」的多为链接直冲/质保极短，图便宜翻车别怪没提醒。价格为页面标注的核实日快照，货源站价格实时浮动，下单前以源站为准。</div>
 </div>
 
 <footer>
-  数据来源：各货源站公开页面逐条核实 · <a href="index.html">返回榜单首页</a> · 交流 <a href="https://t.me/AIShengzhang" target="_blank" rel="noopener">Telegram 频道</a>
+  数据来源：各货源站公开页面与公开商品接口逐条核实 · <a href="index.html">返回榜单首页</a> · 交流 <a href="https://t.me/AIShengzhang" target="_blank" rel="noopener">Telegram 频道</a><br>
+  姊妹站：<a href="https://xwdeshenghuo.github.io/creator-ai-tools/" target="_blank" rel="noopener">创作者 AI 工具导航</a> · <a href="https://xwdeshenghuo.github.io/free-games-daily/" target="_blank" rel="noopener">白嫖限免清单</a> · <a href="https://t.me/FreeLootDailyHub" target="_blank" rel="noopener">白嫖线报局 @FreeLootDailyHub</a> · <a href="https://github.com/xwdeshenghuo/muse-invite-code-guide" target="_blank" rel="noopener">Muse 邀请码注册教程</a>
 </footer>
 
 <script>
@@ -165,6 +177,7 @@ fetch('data.json').then(r=>r.json()).then(d=>{
   $('st-sources').textContent=new Set(DATA.map(r=>r.source)).size;
   $('st-cats').textContent=new Set(DATA.map(r=>(r.kw||'').split(' ')[1]||r.kw)).size;
   $('upd').textContent='更新 '+(d.updated||'');
+  $('st-upd').textContent=(d.updated||'').slice(5)||'–';
   const hot=['爱奇艺','腾讯视频','网易云','瑞幸','麦当劳','肯德基','京东E卡','星巴克'];
   $('hot').innerHTML=hot.map(h=>`<button data-k="${h}">${h}</button>`).join('');
   document.querySelectorAll('.hot button').forEach(b=>b.onclick=()=>{$('q').value=b.dataset.k;render();});
