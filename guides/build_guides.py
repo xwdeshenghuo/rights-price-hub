@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-# Price guide pages under aggregator-site/guides/ - info only.
+# Price guide pages under aggregator-site/guides/ - info pages.
 # Prices: official pricing pages, checked via public search 2026-11-17.
-# No selling, no top-up, no purchase links to shops. No promo language.
+# Store entrance (user approved 2026-11-17): links to the two shop homepages
+# only, no product deep links, no promo language. No selling on these pages.
 import os
 BASE = os.path.expanduser("~/workspace/money-system/aggregator-site/guides")
 os.makedirs(os.path.join(BASE, "ai-subscription"), exist_ok=True)
@@ -17,8 +18,18 @@ CSS = ("body{font-family:system-ui,-apple-system,\"PingFang SC\",\"Microsoft YaH
        "th,td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}"
        "th{background:#f6f6f6}")
 
-DISCLAIMER = ("本站只做公开价格信息汇总，不卖卡、不代充、不提供购买链接。"
-              "价格为 2026-11-17 核查的官网公开价，次日可能变动，以官网为准。")
+DISCLAIMER = ("本站只做公开价格信息汇总，不卖卡、不代充。"
+              "价格为 2026-11-17 核查的官网公开价，次日可能变动，以官网为准。"
+              "文末的代充店入口只指向店铺首页，不挂具体商品直购链接，"
+              "店内售价、库存与售后以店内页面为准。")
+
+STORE_BOX = """<h2>代充店入口</h2>
+<p>想找人代充可以去我们的店里看，只挂店铺首页，不挂具体商品链接，售价、库存、售后以店内页面为准：</p>
+<ul>
+<li><a href="https://www.16688.com.cn/shop/S833876">数卡星球 · 16688店</a></li>
+<li><a href="https://wzyp.cn/shop/VJX8A2B1">数卡星球 · 链动小铺</a></li>
+</ul>
+"""
 
 def page(title, desc, crumb_href, crumb_name, body, sisters=False):
     sis = ""
@@ -37,7 +48,7 @@ def page(title, desc, crumb_href, crumb_name, body, sisters=False):
             "<style>" + CSS + "</style>\n</head>\n<body>\n"
             "<p class=\"note\"><a href=\"" + crumb_href + "\">" + crumb_name + "</a> &gt; " + title + "</p>\n"
             "<div class=\"warn\"><b>先说清楚：</b>" + DISCLAIMER + "</div>\n"
-            + body + "\n" + sis +
+            + body + "\n" + STORE_BOX + sis +
             "<p class=\"note\">" + DISCLAIMER + "</p>\n</body>\n</html>\n")
 
 pages = {}
