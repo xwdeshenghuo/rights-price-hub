@@ -126,4 +126,22 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://xwdeshenghuo.github.io/rights-price-hub/guides/ai-subscription/annual-cost-decision.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://xwdeshenghuo.github.io/rights-price-hub/guides/ai-subscription/creative-annual-decision.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://xwdeshenghuo.github.io/rights-price-hub/guides/ai-subscription/notion-plus-vs-business.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
