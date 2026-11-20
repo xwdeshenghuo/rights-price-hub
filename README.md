@@ -15,5 +15,6 @@
 - 🐙 [开源日报 daily-github-rising](https://github.com/xwdeshenghuo/daily-github-rising)｜频道 [开源线报局](https://t.me/OpenSourceBrief)
 - 📖 [Muse 注册教程](https://github.com/xwdeshenghuo/muse-invite-code-guide)｜主频道 [向上生长](https://t.me/AIShengzhang)
 - 💼 [远程岗位 remote-jobs-cn](https://github.com/xwdeshenghuo/remote-jobs-cn)｜频道 [远程工作线报](https://t.me/RemoteJobsDailyHub)
+- 🍔 [外卖/酒店领券 CPS中转站](https://xwdeshenghuo.github.io/cps-zhongzhuan/) — 美团外卖红包口令、美团酒店最高立减200元、飞猪百元好房200元红包与政府补贴最高立减600元、携程酒店入口，先领券再下单
 - 📊 [币圈日报 crypto-daily-cn](https://github.com/xwdeshenghuo/crypto-daily-cn)｜频道 [币圈线报局](https://t.me/CryptoAlphaBrief)
 - 🤖 免费领资料：[@aishengzhang_bot](https://t.me/aishengzhang_bot)
