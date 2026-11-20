@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI订阅年付计算器：ChatGPT、Claude月付年付一次算清</title>
+<meta name="description" content="选档位、填月数和汇率，算出ChatGPT Plus/Pro、Claude Pro/Max/Ultra的总价、月均与日均。官价核实于2026年11月20-21日，只算数，不卖订阅。">
+<style>body{font-family:system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;max-width:720px;margin:0 auto;padding:24px 16px;line-height:1.8;color:#222}h1{font-size:22px}h2{font-size:18px;margin-top:28px}a{color:#1657c9}.note{color:#666;font-size:14px}.warn{background:#fff7e6;border:1px solid #f0c36d;padding:12px 14px;font-size:14px}label{display:block;margin:12px 0 4px}input,select{width:100%;padding:10px;font-size:16px;box-sizing:border-box}button{margin-top:16px;padding:12px 20px;font-size:16px;background:#1657c9;color:#fff;border:0;border-radius:6px}table{border-collapse:collapse;width:100%;font-size:15px;margin-top:16px}td,th{border:1px solid #ddd;padding:8px;text-align:left}</style>
+</head>
+<body>
+<p class="note"><a href="index.html">权益货源价榜</a> &gt; AI订阅年付计算器</p>
+<h1>AI订阅年付计算器</h1>
+<p class="note">官价核实于2026年11月20-21日，来源为各家官网定价页与官方公告；价格以美元计，汇率按你实际付款时的汇率填，默认 7.15 只是占位。本文只算数，不卖订阅、不留联系方式。</p>
+<label>档位
+<select id="tier">
+<option value="20|ChatGPT Plus">ChatGPT Plus — 20美元/月</option>
+<option value="200|ChatGPT Pro">ChatGPT Pro — 200美元/月</option>
+<option value="20|Claude Pro（月付）">Claude Pro（月付）— 20美元/月</option>
+<option value="16.67|Claude Pro（年付200美元/年）">Claude Pro（年付）— 200美元/年，折约16.67美元/月</option>
+<option value="100|Claude Max">Claude Max — 100美元/月起</option>
+<option value="200|Claude Ultra">Claude Ultra — 200美元/月</option>
+</select></label>
+<label>用几个月<input id="months" type="number" step="1" min="1" max="36" value="12"></label>
+<label>汇率（1美元=多少人民币，按实际付款汇率填）<input id="rate" type="number" step="0.01" min="0" value="7.15"></label>
+<button onclick="calc()">算一下</button>
+<table id="out" style="display:none">
+<tr><th>项目</th><th>结果</th></tr>
+<tr><td>档位</td><td id="rTier"></td></tr>
+<tr><td>总价（美元）</td><td id="rUsd"></td></tr>
+<tr><td>总价（人民币，按你填的汇率）</td><td id="rRmb"></td></tr>
+<tr><td>月均（人民币）</td><td id="rMonth"></td></tr>
+<tr><td>日均（人民币，按30天/月）</td><td id="rDay"></td></tr>
+</table>
+<script>
+function calc(){
+  var parts=document.getElementById('tier').value.split('|');
+  var monthly=parseFloat(parts[0]), name=parts[1];
+  var m=parseFloat(document.getElementById('months').value)||0;
+  var rate=parseFloat(document.getElementById('rate').value)||0;
+  var usd=monthly*m, rmb=usd*rate;
+  document.getElementById('out').style.display='';
+  document.getElementById('rTier').textContent=name;
+  document.getElementById('rUsd').textContent='$'+usd.toFixed(2);
+  document.getElementById('rRmb').textContent='¥'+rmb.toFixed(2);
+  document.getElementById('rMonth').textContent='¥'+(rmb/m).toFixed(2)+'/月';
+  document.getElementById('rDay').textContent='¥'+(rmb/m/30).toFixed(2)+'/天';
+}
+</script>
+<h2>先说清楚三点</h2>
+<div class="warn">1）三家都有免费版，先用免费版再决定要不要付费；2）最贵的不一定最适合你，按用量选；3）GPT-6.2 只在 ChatGPT Work 与 Codex 里对 Plus/Pro 开放，普通聊天框里没有；Gemini 4 Neon 只在付费 Pro/Ultra 与 API 里有，免费版用不上。</div>
+<p class="note">价格与入口信息核实于2026年11月21日，次日可能变动，以各家官网为准。国内代充价以店铺实时页为准，本页不提供购买链接。</p>
+</body>
+</html>
